@@ -11,9 +11,10 @@ var express 	= require("express"),
 
 
 // The database made it automatically
-mongoose.connect("mongodb://localhost/yelp_camp_v4",  { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/yelp_camp_v5",  { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 seedDB();
 
 
@@ -71,7 +72,7 @@ app.get("/campgrounds/:id", function(req,res){
 		if(err){
 			console.log(err);
 		} else {
-			console.log(foundCampground);
+			// console.log(foundCampground);
 			// render show template with that campground
 			res.render("campgrounds/show", {campground:foundCampground});
 		}
